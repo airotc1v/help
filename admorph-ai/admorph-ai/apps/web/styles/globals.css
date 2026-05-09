@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --am-black: #080A0F;
+  --am-surface: #0D1017;
+  --am-panel: #111620;
+  --am-border: #1E2535;
+  --am-amber: #F5A623;
+  --am-green: #00D4AA;
+  --am-red: #FF4757;
+  --am-text: #E8EDF5;
+  --am-muted: #6B7A96;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: var(--am-black);
+  color: var(--am-text);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--am-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: #2A3548;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--am-amber);
+}
+
+/* Noise overlay texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+@layer components {
+  .am-panel {
+    @apply bg-am-panel border border-am-border rounded-lg;
+  }
+
+  .am-btn-primary {
+    @apply bg-am-amber text-am-black font-body font-semibold px-4 py-2 rounded text-sm
+    hover:bg-am-amber-dim transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .am-btn-ghost {
+    @apply bg-transparent border border-am-border text-am-muted font-body text-sm px-4 py-2 rounded
+    hover:border-am-border-bright hover:text-am-text transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .am-stat-card {
+    @apply am-panel p-5 flex flex-col gap-1;
+  }
+
+  .am-label {
+    @apply text-am-muted text-xs font-mono uppercase tracking-widest;
+  }
+
+  .am-value {
+    @apply text-am-text text-2xl font-display tracking-wide;
+  }
+
+  .badge-green {
+    @apply bg-am-green/10 text-am-green border border-am-green/20 text-xs font-mono px-2 py-0.5 rounded-full;
+  }
+
+  .badge-amber {
+    @apply bg-am-amber/10 text-am-amber border border-am-amber/20 text-xs font-mono px-2 py-0.5 rounded-full;
+  }
+
+  .badge-red {
+    @apply bg-am-red/10 text-am-red border border-am-red/20 text-xs font-mono px-2 py-0.5 rounded-full;
+  }
+
+  .badge-blue {
+    @apply bg-am-blue/10 text-am-blue border border-am-blue/20 text-xs font-mono px-2 py-0.5 rounded-full;
+  }
+}
